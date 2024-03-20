@@ -18,6 +18,7 @@
 import { mapActions, mapState } from 'vuex'
 
 export default {
+    name: 'UserSettings',
   data() {
     return {
       updatedUser: {

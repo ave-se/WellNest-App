@@ -18,6 +18,7 @@
   import { mapActions } from 'vuex'
   
   export default {
+     name: 'UserLogin',
     data() {
       return {
         credentials: {
