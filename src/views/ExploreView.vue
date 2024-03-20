@@ -3,13 +3,24 @@
 <template>
     <div class="explore-view">
       <h1>Explore Wellness Services</h1>
-      <!-- Display a map view and filter options here -->
+      <ul>
+        <li v-for="service in services" :key="service.id">{{ service.name }}</li>
+      </ul>
     </div>
   </template>
   
   <script>
   export default {
-    // Add your script here
+    name: 'ExploreView',
+    data() {
+      return {
+        services: [
+          { id: 1, name: 'Service 1' },
+          { id: 2, name: 'Service 2' },
+          // Add more services here
+        ]
+      }
+    }
   }
   </script>
   
