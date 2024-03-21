@@ -7,6 +7,7 @@ import ExploreView from './views/ExploreView.vue';
 import UserProfile from './components/UserProfile.vue'; 
 import UserSettings from './components/UserSettings.vue';
 import UserLogin from './components/UserLogin.vue';
+import './assets/main.css';
 
 // Define your routes
 const routes = [

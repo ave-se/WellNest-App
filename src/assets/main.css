@@ -3,3 +3,111 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+* {
+    box-sizing: border-box;
+    padding : 8px;
+  }
+
+body {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: rgb(246, 230, 236);
+}
+
+a {
+  color: #9a4949;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #956b78;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 10px;
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: #333;
+    line-height: 0.4;
+  }
+  
+  p {
+    margin-bottom: 1em;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  input[type="submit"], input[type="button"], button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+ 
+
+  input[type="submit"]:hover, input[type="button"]:hover, button:hover {
+    background-color: #0056b3;
+  }
