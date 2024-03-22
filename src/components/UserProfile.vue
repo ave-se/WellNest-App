@@ -32,13 +32,15 @@ export default {
     };
   },
   computed: {
-    favorites() {
-      return this.$store.state.user.favorites;
-    },
-    reviews() {
-      return this.$store.state.user.reviews;
+  favorites() {
+    // Make sure `this.user` is defined before trying to access `favorites`.
+    if (this.user) {
+      return this.user.favorites;
     }
+    // If `this.user` is undefined, return a default value.
+    return [];
   },
+},
   methods: {
     handleSubmit() {
       this.$store.dispatch('user/addReview', { text: this.reviewText });

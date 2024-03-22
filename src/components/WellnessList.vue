@@ -1,31 +1,23 @@
-<!-- src/components/WellnessList.vue -->
+<!-- WellnessList.vue -->
 
 <template>
-  <div class="wellness-list">
-    <wellness-card v-for="service in services" :key="service.id" :service="service" />
+  <div>
+    <div v-for="service in services" :key="service.id">
+      <h2>{{ service.name }}</h2>
+      <p>{{ service.description }}</p>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
-import WellnessCard from './WellnessCard.vue'
-
 export default {
-  components: {
-    WellnessCard
-  },
-  computed: {
-    ...mapState('wellness', ['services'])
-  },
-  methods: {
-    ...mapActions('wellness', ['fetchServices'])
+  data() {
+    return {
+      services: [],
+    };
   },
   created() {
-    this.fetchServices()
-  }
-}
+    // Fetch your services here and assign them to this.services
+  },
+};
 </script>
-
-<style scoped>
-/* Add your styles here */
-</style>

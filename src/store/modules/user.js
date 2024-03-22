@@ -1,5 +1,5 @@
 // src/store/user.js
-import { auth } from 'firebase/app';
+import { auth } from '../../firebase.js';
 
 
 export default {

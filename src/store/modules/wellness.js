@@ -1,13 +1,13 @@
 // src/store/wellness.js
 
-import api from '@/api';
+import api from './api'; // Update this import
 
 export default {
   namespaced: true,
   state: {
     services: [],
     searchQuery: '',
-    serviceDetails: null
+    serviceDetails: []
   },
   mutations: {
     SET_SERVICES(state, services) {
@@ -20,10 +20,13 @@ export default {
       state.serviceDetails = details;
     }
   },
+  
   actions: {
-    fetchServices({ commit }) {
-      return api.getWellnessServices().then(response => {
-        commit('SET_SERVICES', response.data);
+    fetchServices({ commit }, query) {
+      return api.findPlaces(query).then(response => { // Update this function call
+        commit('SET_SERVICES', response);
+      }).catch(error => {
+        console.error('Failed to fetch services:', error);
       });
     },
     setSearchQuery({ commit }, query) {
@@ -37,12 +40,8 @@ export default {
   },
   getters: {
     filteredServices(state) {
-      if (!state.searchQuery) {
-        return state.services;
-      }
-      return state.services.filter(service =>
-        service.title.toLowerCase().includes(state.searchQuery.toLowerCase())
-      );
+      return state.services;
     }
+  
   }
 };

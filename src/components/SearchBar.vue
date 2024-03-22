@@ -1,28 +1,26 @@
-<!-- src/components/SearchBar.vue -->
-
 <template>
-    <form @submit.prevent="handleSubmit">
-      <input type="search" v-model="searchQuery" placeholder="Search services..." required>
-      <button type="submit">Search</button>
-    </form>
-  </template>
-  
-  <script>
-  export default {
-    name: 'SearchBar',
-    data() {
-      return {
-        searchQuery: ''
-      };
+  <form @submit.prevent="search">
+    <input type="search" v-model="searchQuery" placeholder="Search services..." required>
+    <button type="submit">Search</button>
+  </form>
+</template>
+
+<script>
+export default {
+  name: 'SearchBar',
+  data() {
+    return {
+      searchQuery: ''
+    };
+  },
+  methods: {
+    search() {
+      this.$emit('search', this.searchQuery);
     },
-    methods: {
-      handleSubmit() {
-        this.$store.dispatch('wellness/setSearchQuery', this.searchQuery);
-      }
-    }
-  }
-  </script>
-  
-  <style scoped>
-  /* Add your styles here */
-  </style>
+  },
+}
+</script>
+
+<style scoped>
+/* Add your styles here */
+</style>

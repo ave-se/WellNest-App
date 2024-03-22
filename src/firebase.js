@@ -2,18 +2,16 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
-
 const firebaseConfig = {
-  apiKey: "AIzaSyD27jm5u_GL8GC-sUpFMAF2XvZL3cXuvr8",
-  authDomain: "wellnest-app-24712.firebaseapp.com",
-  projectId: "wellnest-app-24712",
-  storageBucket: "wellnest-app-24712.appspot.com",
-  messagingSenderId: "531761633261",
-  appId: "1:531761633261:web:43dd83cab6199ed86cf9e4",
-  measurementId: "G-LEH2VY8WDK"
+  apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+  authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.VUE_APP_FIREBASE_APP_ID,
+  measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
 };
 
-initializeApp(firebaseConfig);
-const auth = getAuth();
+const app = initializeApp(firebaseConfig);
 
-export { auth };
+export const auth = getAuth(app);
