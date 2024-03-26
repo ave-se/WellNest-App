@@ -1,24 +1,24 @@
 // src/store/index.js
 
 import { createStore } from 'vuex';
-import api from '@/api'; // Update this import
+import api from '@/api'; // Updated import
 
 export default createStore({
   state: {
-    services: [],
+    hobbies: [], 
   },
   mutations: {
-    setServices(state, services) {
-      state.services = services;
+    setHobbies(state, hobbies) { 
+      state.hobbies = hobbies;
     },
   },
   actions: {
-    async fetchServices({ commit }) {
+    async fetchHobbies({ commit }, category) { 
       try {
-        const response = await api.findPlaces('Your search term'); // Update this function call
-        commit('setServices', response);
+        const response = await api.getHobbiesByCategory(category); 
+        commit('setHobbies', response.data); 
       } catch (error) {
-        console.error(`Failed to fetch services: ${error.message}`);
+        console.error(`Failed to fetch hobbies: ${error.message}`); 
       }
     },
   },

@@ -32,19 +32,26 @@ export default {
     };
   },
   computed: {
-  favorites() {
-    // Make sure `this.user` is defined before trying to access `favorites`.
-    if (this.user) {
-      return this.user.favorites;
-    }
-    // If `this.user` is undefined, return a default value.
-    return [];
+    favorites() {
+      // Make sure `this.user` is defined before trying to access `favorites`.
+      if (this.user) {
+        return this.user.favorites;
+      }
+      // If `this.user` is undefined, return a default value.
+      return [];
+    },
   },
-},
   methods: {
     handleSubmit() {
-      this.$store.dispatch('user/addReview', { text: this.reviewText });
-      this.reviewText = '';
+      this.$store.dispatch('user/addReview', { text: this.reviewText })
+        .then(() => {
+          // Clear the review text after successful submission
+          this.reviewText = '';
+        })
+        .catch(error => {
+          // Handle the error
+          console.error(error);
+        });
     }
   }
 }

@@ -1,47 +1,42 @@
 // src/store/wellness.js
 
-import api from './api'; // Update this import
+import api from '@/api'; 
 
 export default {
   namespaced: true,
   state: {
-    services: [],
+    hobbies: [], 
     searchQuery: '',
-    serviceDetails: []
+    hobbyDetails: [] 
   },
   mutations: {
-    SET_SERVICES(state, services) {
-      state.services = services;
+    SET_HOBBIES(state, hobbies) { 
+      state.hobbies = hobbies;
     },
     SET_SEARCH_QUERY(state, query) {
       state.searchQuery = query;
     },
-    SET_SERVICE_DETAILS(state, details) {
-      state.serviceDetails = details;
+    SET_HOBBY_DETAILS(state, details) { 
+      state.hobbyDetails = details;
     }
   },
   
   actions: {
-    fetchServices({ commit }, query) {
-      return api.findPlaces(query).then(response => { // Update this function call
-        commit('SET_SERVICES', response);
+    fetchHobbies({ commit }, category) { 
+      return api.getHobbiesByCategory(category).then(response => { 
+        commit('SET_HOBBIES', response.data); 
       }).catch(error => {
-        console.error('Failed to fetch services:', error);
+        console.error('Failed to fetch hobbies:', error); 
       });
     },
     setSearchQuery({ commit }, query) {
       commit('SET_SEARCH_QUERY', query);
     },
-    fetchServiceDetails({ commit }, id) {
-      return api.getServiceDetails(id).then(response => {
-        commit('SET_SERVICE_DETAILS', response.data);
-      });
-    }
+   
   },
   getters: {
-    filteredServices(state) {
-      return state.services;
+    filteredHobbies(state) { 
+      return state.hobbies;
     }
-  
   }
 };

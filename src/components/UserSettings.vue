@@ -1,8 +1,8 @@
-<!-- src/components/Settings.vue -->
+<!-- src/components/UserSettings.vue -->
 
 <template>
   <div class="settings">
-    <form @submit.prevent="updateUser">
+    <form @submit.prevent="submitForm">
       <label for="name">Name:</label>
       <input id="name" v-model="updatedUser.name" type="text">
 
@@ -18,7 +18,7 @@
 import { mapActions, mapState } from 'vuex'
 
 export default {
-    name: 'UserSettings',
+  name: 'UserSettings',
   data() {
     return {
       updatedUser: {
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     ...mapActions('user', ['updateUser']),
-    updateUser() {
+    submitForm() {
       this.updateUser(this.updatedUser)
     }
   },

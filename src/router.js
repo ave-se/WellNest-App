@@ -1,14 +1,13 @@
 // src/router.js
 
 import { createRouter, createWebHistory } from 'vue-router'
-// import firebase from './firebase';
 import {auth} from './firebase';
 import HomeView from './views/HomeView.vue'
 import ExploreView from './views/ExploreView.vue'
 import UserProfileView from './views/UserProfileView.vue'
 import UserSettings from './components/UserSettings.vue'
 import UserLogin from './components/UserLogin.vue'
-import ServiceDetails from './components/ServiceDetails.vue';
+import HobbyDetails from './components/HobbyDetails.vue'; // Updated import
 
 const routes = [
   {
@@ -41,9 +40,9 @@ const routes = [
     component: UserLogin
   },
   {
-    path: '/services/:id',
-    name: 'ServiceDetails',
-    component: ServiceDetails,
+    path: '/hobbies/:id', // Updated path
+    name: 'HobbyDetails', // Updated name
+    component: HobbyDetails, // Updated component
     meta: { requiresAuth: false }
   }
 ];

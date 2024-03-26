@@ -1,31 +1,31 @@
 // src/store/modules/map.js
 
-import axios from 'axios'
+import api from '@/api'; // Updated import
 
 export default {
-  state: {
-    locations: [],
-    currentLocation: null
-  },
-  mutations: {
-    setLocations(state, locations) {
-      state.locations = locations
+    state: {
+        hobbies: [], // Renamed from locations to hobbies
+        currentHobby: null // Renamed from currentLocation to currentHobby
     },
-    setCurrentLocation(state, location) {
-      state.currentLocation = location
-    }
-  },
-  actions: {
-    async fetchLocations({ commit }) {
-      try {
-        const response = await axios.get('https://api.example.com/locations')
-        commit('setLocations', response.data)
-      } catch (error) {
-        console.error('Error fetching locations:', error)
-      }
+    mutations: {
+        setHobbies(state, hobbies) { // Renamed from setLocations to setHobbies
+            state.hobbies = hobbies
+        },
+        setCurrentHobby(state, hobby) { // Renamed from setCurrentLocation to setCurrentHobby
+            state.currentHobby = hobby
+        }
     },
-    setCurrentLocation({ commit }, location) {
-      commit('setCurrentLocation', location)
+    actions: {
+        async fetchHobbies({ commit }, category) { // Renamed from fetchLocations to fetchHobbies and added category parameter
+            try {
+                const response = await api.getHobbiesByCategory(category); // Updated function call
+                commit('setHobbies', response.data); // Renamed from setLocations to setHobbies
+            } catch (error) {
+                console.error('Error fetching hobbies:', error); // Updated error message
+            }
+        },
+        setCurrentHobby({ commit }, hobby) { // Renamed from setCurrentLocation to setCurrentHobby
+            commit('setCurrentHobby', hobby); // Renamed from setCurrentLocation to setCurrentHobby
+        }
     }
-  }
 }

@@ -1,73 +1,40 @@
 <template>
     <div>
-        <!-- Debugging output -->
-        <p>Services: {{ services.length }}</p>
-        <p>Filtered Services: {{ filteredServices.length }}</p>
-        <p>Paginated Services: {{ paginatedServices.length }}</p>
-
-        <SearchBar @search="search" />
-
-        <div v-for="service in paginatedServices" :key="service.id">
-            <h2>{{ service.name }}</h2>
-            <p>{{ service.description }}</p>
-        </div>
-        <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
-        <button @click="nextPage" :disabled="currentPage === numberOfPages">Next</button>
+        <search-bar @search="fetchHobbies" />
+        <hobbies-list :hobbies="hobbies" />
     </div>
 </template>
 
 <script>
-import SearchBar from '@/components/SearchBar.vue';
-import apiClient from '@/api.js'
+import apiClient from '../api.js';
+import SearchBar from '../components/SearchBar.vue';
+import HobbiesList from '../components/HobbiesList.vue';
 
 export default {
+    name: 'ExploreView',
     components: {
-        SearchBar
+        SearchBar,
+        HobbiesList,
     },
     data() {
         return {
-            services: [],
-            searchQuery: '',
-            currentPage: 1,
-            itemsPerPage: 5,
+            hobbies: [],
         };
     },
-    async created() {
-    try {
-        const response = await apiClient.getWellnessServices();
-        this.services = Array.isArray(response.data.data) ? response.data.data : [];
-    } catch (error) {
-        console.error('Failed to fetch services:', error);
-        this.services = []; // Ensure services is an empty array in case of error
-    }
-},
-    computed: {
-        filteredServices() {
-            if (!this.searchQuery) {
-                return this.services;
-            }
-            return this.services.filter(service => service.name.includes(this.searchQuery));
-        },
-        numberOfPages() {
-            return Math.ceil(this.filteredServices.length / this.itemsPerPage);
-        },
-        paginatedServices() {
-            const start = (this.currentPage - 1) * this.itemsPerPage;
-            const end = start + this.itemsPerPage;
-            return this.filteredServices.slice(start, end);
-        },
-    },
     methods: {
-        search(query) {
-            this.searchQuery = query;
-            this.currentPage = 1; // Reset to first page when new search is made
+        fetchHobbies(category) {
+            apiClient.get('hobbies', { params: { category } })
+                .then(response => {
+                    this.hobbies = response.data;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         },
-        // Rest of your methods...
     },
-};
+}
 </script>
-  
-  <style scoped>
- 
-  </style>
-  
+
+<style scoped>
+/* Add your styles here */
+</style>

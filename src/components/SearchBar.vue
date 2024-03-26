@@ -1,6 +1,14 @@
 <template>
   <form @submit.prevent="search">
-    <input type="search" v-model="searchQuery" placeholder="Search services..." required>
+    <select v-model="selectedCategory">
+      <option disabled value="">Please select a category</option>
+      <option>general</option>
+      <option>sports_and_outdoors</option>
+      <option>education</option>
+      <option>collection</option>
+      <option>competition</option>
+      <option>observation</option>
+    </select>
     <button type="submit">Search</button>
   </form>
 </template>
@@ -10,12 +18,12 @@ export default {
   name: 'SearchBar',
   data() {
     return {
-      searchQuery: ''
+      selectedCategory: ''
     };
   },
   methods: {
     search() {
-      this.$emit('search', this.searchQuery);
+      this.$emit('search', this.selectedCategory);
     },
   },
 }

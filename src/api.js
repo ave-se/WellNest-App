@@ -1,33 +1,19 @@
-// src/api.js
+// api.js
 
 import axios from 'axios';
+// import ExploreView from './views/ExploreView.vue';
+
 
 const apiClient = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com',
-  withCredentials: false,
+  baseURL: 'https://api.api-ninjas.com/v1/',
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/json'
-  }
-});
-
-const placesApiClient = axios.create({
-  baseURL: 'https://api.geoapify.com/v2/places',
- 
-});
-
-export default {
-  getWellnessServices() {
-    return apiClient.get('/posts'); // Using posts as a placeholder for wellness services
+    'Content-Type': 'application/json',
+    'X-Api-Key': process.env.VUE_APP_HOBBIES_API_KEY,
   },
-  findPlaces(categories, filter, limit = 20) {
-    return placesApiClient.get('/places', {
-      params: {
-        categories: categories,
-        filter: filter,
-        limit: limit,
-        apiKey: process.env.VUE_APP_GEOAPIFY_API_KEY
-      }
-    });
-  }
-};
+});
+
+export default apiClient;
+
+
+ 
